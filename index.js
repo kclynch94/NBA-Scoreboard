@@ -169,9 +169,11 @@ function displayGamesByDate(responseJson, date, teamName){
   console.log(teamName);
   $('#dateResults').empty();
   $('#recentResults').empty();
+  $('#results').empty();
   $('#liveResults').addClass("hidden");
   $('#recentResults').append('<h2>Recent Games</h2>');
   $('#dateResults').append('<h2>Upcoming Games</h2>');
+  let someGames=0;
  
   responseJson.api.games.forEach(function(game){
     const newDate = new Date(game.startTimeUTC);
@@ -180,24 +182,29 @@ function displayGamesByDate(responseJson, date, teamName){
     const year = newDate.getFullYear();
     const gameDate = new Date(`${year}-${month+1}-${day}`);
     const isSameDate = gameDate.getTime() === date.getTime();
-    if (gameDate.getUTCDate().valueOf() === date.getUTCDate().valueOf()){
-      console.log('stop here');
-    }
-    if((game.statusGame=="Scheduled" && game.hTeam.nickName==teamName && isSameDate)||(game.statusGame=="Scheduled" && game.vTeam.nickName==teamName && isSameDate)) {
+    
+    if ((game.statusGame=="Scheduled" && game.hTeam.nickName==teamName && isSameDate)||(game.statusGame=="Scheduled" && game.vTeam.nickName==teamName && isSameDate)) {
       $('#dateResults').append(`<section class="game"><p>${String(newDate).substring(0,10)}</p><p>${String(newDate).substring(15,21)}</p><p>${game.vTeam.nickName} @ ${game.hTeam.nickName}</p></section>`)
       $('#dateResults').removeClass("hidden");
-    } else if((game.statusGame=="Finished" && game.hTeam.nickName==teamName && isSameDate)||(game.statusGame=="Finished" && game.vTeam.nickName==teamName && isSameDate)){
+      someGames++;
+    } else if ((game.statusGame=="Finished" && game.hTeam.nickName==teamName && isSameDate)||(game.statusGame=="Finished" && game.vTeam.nickName==teamName && isSameDate)){
       $('#recentResults').append(`<section class="game"><p>${String(newDate).substring(0,10)}</p><p>${game.vTeam.nickName}   ${game.vTeam.score.points} - ${game.hTeam.score.points}  ${game.hTeam.nickName}</p></section>`)
       $('#recentResults').removeClass("hidden");
-    } else if(game.statusGame=="Scheduled" && teamName=="default" && isSameDate) {
+      someGames++;
+    } else if (game.statusGame=="Scheduled" && teamName=="default" && isSameDate) {
       $('#dateResults').append(`<section class="game"><p>${String(newDate).substring(0,10)}</p><p>${String(newDate).substring(15,21)}</p><p>${game.hTeam.nickName} @ ${game.vTeam.nickName}</p></section>`)
       $('#dateResults').removeClass("hidden");
-    } else if(game.statusGame=="Finished" && teamName=="default" && isSameDate){
+      someGames++;
+    } else if (game.statusGame=="Finished" && teamName=="default" && isSameDate){
       $('#recentResults').append(`<section class="game"><p>${String(newDate).substring(0,10)}</p><p>${game.vTeam.nickName}   ${game.vTeam.score.points} - ${game.hTeam.score.points}  ${game.hTeam.nickName}</p></section>`)
       $('#recentResults').removeClass("hidden");
-    }
+      someGames++;
+    } 
   }) 
 
+  if (someGames===0) {
+      $('#message').append('<p>No games played. Try again</p>');
+  }
   
   
 }
@@ -237,9 +244,10 @@ function watchForm() {
     const date = $('#date').val();
     event.preventDefault();
     if (!date.trim() && team=="default"){
-      //error message
+      $('#js-error-message').html('Please enter a team, a date, or both');
     } else if (team!="default" && date==""){
       getGamesByTeam(team);
+      $('#js-error-message').empty();
     } else {
       const inputDate = new Date(date);
       const month = inputDate.getMonth();
@@ -247,6 +255,7 @@ function watchForm() {
       const year = inputDate.getFullYear();
       const trueInputDate = new Date(`${year}-${month+1}-${day}`);
       getGamesByDate(trueInputDate, teamName);
+      $('#js-error-message').empty();
     }
     $('#dateResults').addClass("hidden");
     $('#recentResults').addClass("hidden");
