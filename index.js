@@ -73,10 +73,12 @@ function displayRecentGames(responseJson){
       finishedGames.push(game);
     }
   })
+  console.log(finishedGames);
  
-  let recentGamesDate = String(new Date(finishedGames[finishedGames.length-1].startTimeUTC)).substring(0,10);
+  let recentGamesDate = String(new Date(finishedGames[finishedGames.length-2].startTimeUTC)).substring(0,10);
   console.log(recentGamesDate);
   for (let i=0; i<finishedGames.length-1; i++){
+      console.log(String(new Date(finishedGames[i].startTimeUTC)).substring(0,10));
     if (String(new Date(finishedGames[i].startTimeUTC)).substring(0,10)==recentGamesDate) {
       let newDate = new Date(finishedGames[i].startTimeUTC);
       $('#recentResults').append(`<section class="game"><p>${String(newDate).substring(0,10)}</p><p>${finishedGames[i].vTeam.nickName}   ${finishedGames[i].vTeam.score.points} - ${finishedGames[i].hTeam.score.points}  ${finishedGames[i].hTeam.nickName}</p></section>`)
@@ -111,6 +113,7 @@ function getGamesByTeam(team){
 function displayTeamGames(responseJson) {
   $('#recentResults').empty();
   $('#dateResults').empty();
+  $('#liveResults').empty();
   $('#recentResults').append('<h2>Recent Games</h2>');
     $('#dateResults').append('<h2>Upcoming Games</h2>');
 
