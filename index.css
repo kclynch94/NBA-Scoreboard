@@ -1,51 +1,159 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  button, input[type="text"] {
-    padding: 5px;
-  }
-  
-  button:hover {
-    cursor: pointer;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  li {
-    padding: 10px;
-  }
-  
-  li, img {
-    max-width: 500px;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .error-message {
-      color: red;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-image: url("Images/15505.jpg");
+}
+
+button, input[type="text"] {
+  padding: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 10px;
+}
+
+li, img {
+  max-width: 500px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.error-message {
+    color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.game {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 10px 0;
+  text-align: left;
+  background-color: #dfe3ee;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.team-name{
+  display: inline-block;
+  width: 48%;
+  padding-left: 30px;
+}
+
+.team-score{
+  display: inline-block;
+  width: 23%;
+  padding-right: 10px;
+}
+
+.logo{
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  padding-left: 10px;
+}
+
+.game-row{
+  display: flex;
+  align-items: center;
+}
+
+.winner{
+  color: black;
+}
+
+.loser{
+  color:grey;
+}
+
+.box-score {
+  display: flex;
+  align-items: center;
+}
+
+.teams {
+  display: inline-block;
+  width: 73%;
+}
+
+.date {
+  display: inline-block;
+  width: 23%;
+  text-align: center;
+}
+
+.block {
+  border-radius: 10px;
+  background-color: #F4F4F4; 
+  text-align: left;
+  padding: 0 10px;
+}
+
+.header {
+  color: white;
+}
+
+h2 {
+  padding-top: 20px;
+  text-align: Center;
+  padding-left: 0;
+  font-size: 30px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+  font-size: 45px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+#message .message {
+  padding-bottom:15px;
+}
+
+#message {
+  color: red;
+  background-color: white;
+}
+
+.games-container {
+  width: 95%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 520px){
   .game {
-    display: inline-block;
-    width: 30%;
+    width: 47%;
     margin: 10px;
-    border-style: solid;
-    border-width: 2px;
-    text-align: center;
   }
+
+  h2 {
+    text-align: left;
+    padding-left: 40px;
+  }
+}
