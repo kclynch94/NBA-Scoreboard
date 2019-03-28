@@ -15,16 +15,17 @@
             <h1>NBA Scoreboard</h1>
 
             <form id="js-form">
-                <label for="nbaTeam">Select a team:</label>
-                <select class="teamSelector" id="nbaTeam">
-                <option value="default" data-nickname="default">None</option>
-                </select>
-
-                <label for="date">Select a date:</label>
-
-                <input type="date" id="date" name="date">
-
-                <input type="submit" value="Go!">
+                <div class="selector">
+                    <label for="nbaTeam">Select a team:</label>
+                    <select class="teamSelector" id="nbaTeam">
+                    <option value="default" data-nickname="default">None</option>
+                    </select>
+                </div>
+                <div class="selector">
+                    <label for="date">Select a date:</label>
+                    <input type="date" id="date" name="date">
+                    <input type="submit" value="Go!">
+                </div>
             </form>
         </section>
 

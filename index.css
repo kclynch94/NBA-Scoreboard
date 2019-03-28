@@ -146,6 +146,10 @@ h1 {
   margin: 0 auto;
 }
 
+.selector {
+  display: block;
+}
+
 @media screen and (min-width: 520px){
   .game {
     width: 47%;
@@ -155,5 +159,9 @@ h1 {
   h2 {
     text-align: left;
     padding-left: 40px;
+  }
+
+  .selector{
+    display:  inline-block
   }
 }
