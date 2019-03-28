@@ -125,6 +125,7 @@ function getTeams() {
 function displayLiveGames(responseJson) {
   $('#liveResults').empty();
   $('#liveResults').append('<h2>Live Games</h2><div class="games-container"></div>');
+  let anyGames = 0;
   if (responseJson.api.results > 0) {
     responseJson.api.games.forEach(function (game) {
       const newDate = new Date(game.startTimeUTC);
@@ -138,7 +139,6 @@ function displayLiveGames(responseJson) {
       const todayYear = today.getFullYear();
       const todayDate = new Date(`${todayYear}-${todayMonth + 1}-${todayDay}`);
       const isSameDate = gameDate.getTime() === todayDate.getTime();
-      let anyGames = 0;
       if (isSameDate) {
         $('#liveResults div.games-container').append(
           createLiveGamesTemplate(
@@ -155,12 +155,12 @@ function displayLiveGames(responseJson) {
 
         anyGames++;
       }
-
-      if (anyGames === 0) {
-        $('#liveResults').append('<p class="message">There are currently no live games.</p>')
-      }
     })
   } else {
+    $('#liveResults').append('<p class="message">There are currently no live games.</p>')
+  }
+
+  if (anyGames === 0 && responseJson.api.results > 0) {
     $('#liveResults').append('<p class="message">There are currently no live games.</p>')
   }
 
@@ -436,11 +436,11 @@ function createScheduledGameTemplate(date, dateTime, vTeamNickname, hTeamNicknam
             <section class="box-score">
               <section class="teams">
                 <p class="game-row vTeam">
-                  <img class="logo" src="${vTeamLogo}"></img>
+                  ${getLogo(vTeamLogo, vTeamNickname)}
                   <span class="text-left team-name">${vTeamNickname}</span> 
                 </p>
                 <p class="game-row hTeam">
-                  <img class="logo" src="${hTeamLogo}"></img>
+                  ${getLogo(hTeamLogo, hTeamNickname)}
                   <span class="text-left team-name">${hTeamNickname}</span> 
                 </p>
               </section>
