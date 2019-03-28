@@ -3,7 +3,7 @@ NBA Scoreboard
 
 Live App
 --------
-[NBA Sxorecoard](https://kclynch94.github.io/NBA-Scoreboard/)
+[NBA Scoreboard](https://kclynch94.github.io/NBA-Scoreboard/)
 
 Screenshots
 -----------
